@@ -82,7 +82,7 @@ The formula used to calculate average consumed throughput, **Sum(Throughput) / S
  - Custom: Lets you specify a set time frame until another decrement is allowed. Currently supports minutes and hours (e.g. 30 minutes, 2 hours, etc.).
 
 #### Includes/Excludes
-Allows you to specify which tables/indexes a rule will match to via a simple wildcard (*****) pattern scheme. A general naming convension in DynamoDB is to suffix tables with a formatted date string. Through utilizing a wildcard pattern, you can easily match a rule to multiple tables created across multiple time frames (e.g. using a pattern of **traffic_15*** will match to both tables **traffic_1501** and **traffic_1502**).
+Allows you to specify which tables/indexes a rule will match to via a simple wildcard (&#42;) pattern scheme. A general naming convension in DynamoDB is to suffix tables with a formatted date string. Through utilizing a wildcard pattern, you can easily match a rule to multiple tables created across multiple time frames (e.g. using a pattern of **traffic_15&#42;** will match to both tables **traffic_1501** and **traffic_1502**).
 
 #### Maximum/Minimum Throughput
 Limits your throughput adjustment range so you don't incur unintended usage costs.
