@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4C1FF2A3-DE9A-4C8A-B44C-03DC84020974}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DynamoDBAutoScale</RootNamespace>
+    <AssemblyName>DynamoDBAutoScale</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AWSSDK, Version=2.3.18.0, Culture=neutral, PublicKeyToken=71c852f8be1c371d, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AutoScale.cs" />
+    <Compile Include="AWS.cs" />
+    <Compile Include="ConfigMapping\BlockoutTimeFrame.cs" />
+    <Compile Include="ConfigMapping\ExcludesIncludes.cs" />
+    <Compile Include="ConfigMapping\IncreaseDecrease.cs" />
+    <Compile Include="ConfigMapping\ReadWrite.cs" />
+    <Compile Include="ConfigMapping\Rule.cs" />
+    <Compile Include="ConfigMapping\Rules.cs" />
+    <Compile Include="ConfigMapping\XMLSerializerSectionHandler.cs" />
+    <Compile Include="Decrease.cs" />
+    <Compile Include="Enumerations\DecreaseFrequencies.cs" />
+    <Compile Include="Enumerations\MeasurementTypes.cs" />
+    <Compile Include="ExcludesIncludes.cs" />
+    <Compile Include="Increase.cs" />
+    <Compile Include="IncreaseDecrease.cs" />
+    <Compile Include="Measurement.cs" />
+    <Compile Include="ModifiedThroughput.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Read.cs" />
+    <Compile Include="ReadWrite.cs" />
+    <Compile Include="Results\IncreaseDecreaseResult.cs" />
+    <Compile Include="Results\ModificationResults.cs" />
+    <Compile Include="Results\PreparedModifications.cs" />
+    <Compile Include="Results\ReadWriteResult.cs" />
+    <Compile Include="Results\ThroughputModificationResult.cs" />
+    <Compile Include="ThroughputModification.cs" />
+    <Compile Include="Write.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Libraries\AWSSDK.dll" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
