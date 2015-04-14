@@ -135,6 +135,6 @@ Unless required by applicable law or agreed to in writing, software distributed 
 See the License for the specific language governing permissions and limitations under the License.
 
 [CAKE]: http://getcake.com/
-[Sample Library Usage]: https://github.com/cake-labs
+[Sample Library Usage]: https://github.com/cake-labs/DynamoDBAutoScale/blob/master/DynamoDBAutoScaleExample/Program.cs
 [Dave Stewart]: https://www.linkedin.com/in/daveastewart
 [Rick Lee]: https://www.linkedin.com/in/rickkuanlee
