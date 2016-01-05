@@ -12,6 +12,8 @@ namespace DynamoDBAutoScale
 		public ProvisionedThroughputDescription current_provisioned_throughput { get; set; }
 		public ProvisionedThroughput new_provisioned_throughput { get; set; }
 		public List<ThroughputModificationResult> throughput_modification_results { get; set; }
+		public ReadBasicAlarm read_basic_alarm { get; set; }
+		public WriteBasicAlarm write_basic_alarm { get; set; }
 
 		public ModifiedThroughput(string table_name, string index_name, ProvisionedThroughputDescription current_provisioned_throughput)
 		{
@@ -31,14 +33,14 @@ namespace DynamoDBAutoScale
 				string_builder.AppendFormat("Index Name: {0}", index_name).AppendLine();
 
 			string_builder.Append("Current Provisioned Throughput:").AppendLine();
-			string_builder.AppendFormat("\tRead Capacity Units : {0}", current_provisioned_throughput.ReadCapacityUnits).AppendLine();
-			string_builder.AppendFormat("\tWrite Capacity Units : {0}", current_provisioned_throughput.WriteCapacityUnits).AppendLine();
+			string_builder.AppendFormat("\tRead Capacity Units: {0}", current_provisioned_throughput.ReadCapacityUnits).AppendLine();
+			string_builder.AppendFormat("\tWrite Capacity Units: {0}", current_provisioned_throughput.WriteCapacityUnits).AppendLine();
 
 			if (new_provisioned_throughput != null)
 			{
 				string_builder.Append("New Provisioned Throughput:").AppendLine();
-				string_builder.AppendFormat("\tRead Capacity Units : {0}", new_provisioned_throughput.ReadCapacityUnits).AppendLine();
-				string_builder.AppendFormat("\tWrite Capacity Units : {0}", new_provisioned_throughput.WriteCapacityUnits).AppendLine();
+				string_builder.AppendFormat("\tRead Capacity Units: {0}", new_provisioned_throughput.ReadCapacityUnits).AppendLine();
+				string_builder.AppendFormat("\tWrite Capacity Units: {0}", new_provisioned_throughput.WriteCapacityUnits).AppendLine();
 			}
 
 			throughput_modification_results.ForEach(throughput_modification_result =>

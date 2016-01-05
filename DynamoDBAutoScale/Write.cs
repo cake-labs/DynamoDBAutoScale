@@ -5,7 +5,10 @@ namespace DynamoDBAutoScale
 {
 	public class Write : ReadWrite
 	{
-		public Write(ConfigMapping.ReadWrite read_write, DecreaseFrequencies decrease_frequency, int decrease_frequency_custom_minutes) : base(read_write, decrease_frequency, decrease_frequency_custom_minutes) { }
+		public Write(ConfigMapping.ReadWrite read_write, DecreaseFrequencies decrease_frequency, int decrease_frequency_custom_minutes) : base(read_write, decrease_frequency, decrease_frequency_custom_minutes)
+		{
+			this.basic_alarm = (read_write.basic_alarm != null ? new WriteBasicAlarm(read_write.basic_alarm) : null);
+		}
 
 		#region abstract methods
 

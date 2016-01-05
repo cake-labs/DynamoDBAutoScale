@@ -36,12 +36,12 @@ namespace DynamoDBAutoScale
 			return is_blocked_out;
 		}
 
-		protected override long GetNewCapacityUnits(long current_capacity_units)
+		protected override long GetNewCapacityUnits(long capacity_units)
 		{
 			if (this.amount.measurement_type == MeasurementTypes.Units)
-				return current_capacity_units + this.amount.measurement_units;
+				return capacity_units + this.amount.measurement_units;
 			else // if (this.amount_measurement_type == MeasurementTypes.Percentage)
-				return current_capacity_units + (long)Math.Ceiling(current_capacity_units * ((float)this.amount.measurement_percentage / 100));
+				return capacity_units + (long)Math.Ceiling(capacity_units * ((float)this.amount.measurement_percentage / 100));
 		}
 
 		#endregion

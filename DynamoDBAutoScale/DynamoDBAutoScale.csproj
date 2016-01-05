@@ -44,6 +44,9 @@
   <ItemGroup>
     <Compile Include="AutoScale.cs" />
     <Compile Include="AWS.cs" />
+    <Compile Include="ReadBasicAlarm.cs" />
+    <Compile Include="ReadWriteBasicAlarm.cs" />
+    <Compile Include="ConfigMapping\ReadWriteBasicAlarm.cs" />
     <Compile Include="ConfigMapping\BlockoutTimeFrame.cs" />
     <Compile Include="ConfigMapping\ExcludesIncludes.cs" />
     <Compile Include="ConfigMapping\IncreaseDecrease.cs" />
@@ -69,6 +72,7 @@
     <Compile Include="Results\ThroughputModificationResult.cs" />
     <Compile Include="ThroughputModification.cs" />
     <Compile Include="Write.cs" />
+    <Compile Include="WriteBasicAlarm.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Libraries\AWSSDK.dll" />

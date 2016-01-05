@@ -52,14 +52,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DynamoDBAutoScale\DynamoDBAutoScale.csproj">
-      <Project>{4C1FF2A3-DE9A-4C8A-B44C-03DC84020974}</Project>
-      <Name>DynamoDBAutoScale</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="app.config" />
     <None Include="Rules.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DynamoDBAutoScale\DynamoDBAutoScale.csproj">
+      <Project>{4c1ff2a3-de9a-4c8a-b44c-03dc84020974}</Project>
+      <Name>DynamoDBAutoScale</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

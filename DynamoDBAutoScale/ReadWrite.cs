@@ -21,6 +21,7 @@ namespace DynamoDBAutoScale
 
 		public Increase increase { get; set; }
 		public Decrease decrease { get; set; }
+		public ReadWriteBasicAlarm basic_alarm { get; set; }
 
 		public ReadWrite(ConfigMapping.ReadWrite read_write, DecreaseFrequencies decrease_frequency, int decrease_frequency_custom_minutes)
 		{
@@ -37,7 +38,7 @@ namespace DynamoDBAutoScale
 			if (!string.IsNullOrWhiteSpace(index_name))
 				dimensions.Add(new Dimension { Name = "GlobalSecondaryIndexName", Value = index_name });
 
-			DateTime end_time = DateTime.UtcNow.AddMinutes(-5);
+			DateTime end_time = DateTime.UtcNow.AddMinutes(-1);
 			DateTime start_time = end_time.AddMinutes(-look_back_minutes);
 
 			AmazonCloudWatchClient amazon_cloud_watch_client = AWS.GetAmazonCloudWatchClient();
@@ -49,7 +50,7 @@ namespace DynamoDBAutoScale
 				MetricName = metric_name,
 				StartTime = start_time,
 				EndTime = end_time,
-				Period = 300,
+				Period = 60,
 				Statistics = new List<string> { "Sum" }
 			};
 
@@ -57,11 +58,7 @@ namespace DynamoDBAutoScale
 
 			long consumed_capacity_units = 0;
 			if (get_metric_statistics_response != null && get_metric_statistics_response.Datapoints.Any())
-			{
-				double total_seconds = (end_time - start_time).TotalSeconds;
-				double total_sum = get_metric_statistics_response.Datapoints.Sum(datapoint => datapoint.Sum);
-				consumed_capacity_units = (long)Math.Ceiling(total_sum / total_seconds);
-			}
+				consumed_capacity_units = (long)(get_metric_statistics_response.Datapoints.Max(datapoint => datapoint.Sum) / 60);
 
 			return consumed_capacity_units;
 		}

@@ -107,7 +107,7 @@ namespace DynamoDBAutoScale
 			{
 				blocked_out = IsBlockedOut(current_provisioned_throughput);
 				if (!blocked_out)
-					new_capacity_units = GetNewCapacityUnits(current_capacity_units);
+					new_capacity_units = GetNewCapacityUnits(Math.Max(consumed_capacity_units, current_capacity_units));
 			}
 
 			IncreaseDecreaseResult increase_decrease_result = new IncreaseDecreaseResult(threshold, amount, threshold_met, blocked_out, new_capacity_units);
@@ -120,7 +120,7 @@ namespace DynamoDBAutoScale
 
 		abstract protected bool IsBlockedOut(ProvisionedThroughputDescription current_provisioned_throughput);
 
-		abstract protected long GetNewCapacityUnits(long current_capacity_units);
+		abstract protected long GetNewCapacityUnits(long capacity_units);
 
 		#endregion
 	}

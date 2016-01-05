@@ -114,9 +114,15 @@ namespace DynamoDBAutoScale
 				modified_throughput.throughput_modification_results.Add(throughput_modification_result);
 
 				if (throughput_modification_result.read_result != null)
+				{
 					new_read_capacity_units = throughput_modification_result.read_result.new_capacity_units;
+					modified_throughput.read_basic_alarm = (ReadBasicAlarm)throughput_modification.read.basic_alarm;
+				}
 				if (throughput_modification_result.write_result != null)
+				{
 					new_write_capacity_units = throughput_modification_result.write_result.new_capacity_units;
+					modified_throughput.write_basic_alarm = (WriteBasicAlarm)throughput_modification.write.basic_alarm;
+				}
 			}
 
 			new_read_capacity_units = new_read_capacity_units ?? current_provisioned_throughput.ReadCapacityUnits;
@@ -173,6 +179,14 @@ namespace DynamoDBAutoScale
 						AmazonDynamoDBClient amazon_dynamo_db_client = AWS.GetAmazonDynamoDBClient();
 						amazon_dynamo_db_client.UpdateTable(update_table_request);
 						modification_results.SuccessfulUpdates.Add(table_name_group.Key);
+
+						if (table_modified_throughput != null)
+						{
+							if (table_modified_throughput.read_basic_alarm != null)
+								table_modified_throughput.read_basic_alarm.Enable(table_name_group.Key, table_modified_throughput.new_provisioned_throughput.ReadCapacityUnits);
+							if (table_modified_throughput.write_basic_alarm != null)
+								table_modified_throughput.write_basic_alarm.Enable(table_name_group.Key, table_modified_throughput.new_provisioned_throughput.WriteCapacityUnits);
+						}
 					}
 					catch (Exception exception)
 					{

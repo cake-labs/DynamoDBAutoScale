@@ -19,5 +19,8 @@ namespace DynamoDBAutoScale.ConfigMapping
 
 		[XmlElement("Decrease")]
 		public IncreaseDecrease decrease { get; set; }
+
+		[XmlElement("BasicAlarm")]
+		public ReadWriteBasicAlarm basic_alarm { get; set; }
 	}
 }
